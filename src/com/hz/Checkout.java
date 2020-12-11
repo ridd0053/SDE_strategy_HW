@@ -13,7 +13,13 @@ public class Checkout {
         // init checkout
         DiscountCalculator discountCalculator = new DiscountCalculator(customer);
         if(salesAction == SalesAction.ChristmasEve) {
-            discountCalculator.setChristmasEve(true);
+            discountCalculator.setStrategy( new ChristmasEve());
+
+        }else if(salesAction == SalesAction.BlackFriday){
+            discountCalculator.setStrategy( new BlackFriday());
+        }
+        else{
+            discountCalculator.setStrategy( new Regular());
         }
 
         // Welcome customer
